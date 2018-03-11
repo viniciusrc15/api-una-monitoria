@@ -1,0 +1,19 @@
+{
+  "name": "backendmonitoria",
+  "version": "1.0.0",
+  "description": "API monitoria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusrc15/backEndMonitoria.git"
+  },
+  "author": "Vinicius",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniciusrc15/backEndMonitoria/issues"
+  },
+  "homepage": "https://github.com/viniciusrc15/backEndMonitoria#readme"
+}
