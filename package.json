@@ -4,7 +4,9 @@
   "description": "API monitoria",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/viniciusrc15/backEndMonitoria/issues"
   },
-  "homepage": "https://github.com/viniciusrc15/backEndMonitoria#readme"
+  "homepage": "https://github.com/viniciusrc15/backEndMonitoria#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
 }
