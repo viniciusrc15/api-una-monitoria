@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 
-module.exports.Teste = () => {
+module.exports.Connection = () => {
 
 	var conMySql = mysql.createConnection({
 		host: process.env.serverMonitor,

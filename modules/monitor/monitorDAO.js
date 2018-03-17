@@ -1,21 +1,16 @@
 const mySql = require('../../utils/dbHelp');
 
-module.exports.getMonitors = async () => {
-
+module.exports.getMonitors = async (callback) => {
     try {
-        let con = mySql.Teste();
+        let con = mySql.Connection();
 
         con.connect(async (err) => {
             if (err) {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            var x = await con.query('select * from monitor', async (error, results, fields) => {
-                if (error) return error.message;
-                console.log('resultado', results);
-                con.end();
-                return results;
-            });
+            await con.query('select * from monitor', callback);
+            con.end();
         });
     } catch (e) {
         return e.message;
