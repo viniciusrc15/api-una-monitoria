@@ -1,6 +1,6 @@
 const mySql = require('../../utils/dbHelp');
 
-module.exports.getMonitors = async (callback) => {
+module.exports.getMonitoring = async (callback) => {
     try {
         let con = mySql.Connection();
 

@@ -9,11 +9,13 @@ app.use(bodyParser.urlencoded({  // to support URL-encoded bodies
   extended: true
 }));
 
-const monitorRoute = require('./modules/monitor/monitorRoute');
+const monitoringRoute = require('./modules/monitoring/monitoringRoute');
+const adminRoute = require('./modules/admin/adminRoute');
 
 app.use(bodyParser.json());
 
-app.use('/api', monitorRoute);
+app.use('/api', monitoringRoute);
+app.use('/api', adminRoute);
 
 app.get('/', function (req, res) {
   res.status(200).send('Una Monitoria!');
