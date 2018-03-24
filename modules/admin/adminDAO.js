@@ -1,6 +1,9 @@
 const mySql = require('../../utils/dbHelp');
+const hash = require('../../utils/hash');
+const adm = require('./admin');
 
-module.exports.getAdmin = async (callback) => {
+module.exports.postAdminRegister = async (admin, callback) => {
+    admin.senha = hash.createHash(admin.senha);
     try {
         let con = mySql.Connection();
 
@@ -9,7 +12,7 @@ module.exports.getAdmin = async (callback) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('select * from admin', callback);
+            await con.query('insert into administrador set ?', admin, callback);
             con.end();
         });
     } catch (e) {
@@ -18,16 +21,17 @@ module.exports.getAdmin = async (callback) => {
 
 }
 
-module.exports.postAdmin = async (admin,callback) => {
+module.exports.postAdminLogin = async (admin,callback) => {
+    console.log(admin)
+    admin.senha = hash.createHash(admin.senha);
     try {
         let con = mySql.Connection();
-
         con.connect(async (err) => {
             if (err) {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('insert into admin set ?',admin, callback);
+            var resp = await con.query('select * from administrador where usuario = ? and senha = ?', [admin.usuario, admin.senha], callback);
             con.end();
         });
     } catch (e) {
