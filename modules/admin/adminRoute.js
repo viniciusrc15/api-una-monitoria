@@ -1,14 +1,23 @@
 const express = require('express')
 const router = express.Router();
 const adminDAO = require('./adminDAO');
+const jwt = require('jsonwebtoken');
+const midware = require('../../utils/midwares');
 
+router.use('/admin', midware.verifyToken)
 
-router.post('/admin/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     adminDAO.postAdminLogin(req.body, function (error, result, fields) {
-      console.log(result);
-      if(result.length > 0){
+      if (result.length > 0) {
+        let token = jwt.sign({
+          data: req.body.usuario
+        }, 'secret', { expiresIn: '1h' });
+
+        res.setHeader('Access-Token', token);
+
         res.status(200).send('Logado com sucesso');
+
       } else {
         res.status(403).send('Usuário ou senha incorreto');
       }

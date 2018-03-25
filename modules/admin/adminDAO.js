@@ -39,3 +39,15 @@ module.exports.postAdminLogin = async (admin,callback) => {
     }
 
 }
+// let verifyToken = function (req, res, next) {
+//     console.log('verificando token...')
+
+//     let token = req.query.token || req.body.token || req.headers.token
+
+//     jwt.verify(token, config.segredo, function (err, decoded) {
+
+//         if (err) {
+
+//             throw new Error(err);
+//         }       
+// });
