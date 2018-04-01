@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
   res.status(200).send('Una Monitoria!');
 });
 
-app.listen(8100, function () {
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
   console.log('Servidor OK!! http://localhost:8100/ ');
 });
