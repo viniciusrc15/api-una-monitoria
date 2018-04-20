@@ -4,9 +4,10 @@ const adminDAO = require('./adminDAO');
 const jwt = require('jsonwebtoken');
 const midware = require('../../utils/midwares');
 
-router.use('/admin', midware.verifyToken)
+
 
 router.post('/login', async (req, res) => {
+  router.use('/admin', midware.verifyToken)
   try {
     adminDAO.postAdminLogin(req.body, function (error, result, fields) {
       if (result.length > 0) {
