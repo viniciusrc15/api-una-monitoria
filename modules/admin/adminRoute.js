@@ -12,11 +12,8 @@ router.post('/login', async (req, res) => {
         let token = jwt.sign({
           data: req.body.usuario
         }, 'secret', { expiresIn: '1h' });
-
         res.setHeader('Access-Token', token);
-
         res.status(200).send('Logado com sucesso');
-
       } else {
         res.status(403).send('Usuário ou senha incorreto');
       }
