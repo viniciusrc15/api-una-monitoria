@@ -1,6 +1,6 @@
 const mySql = require('../../utils/dbHelp');
 const hash = require('../../utils/hash');
-const adm = require('./admin');
+const course = require('./course');
 
 module.exports.getCourse = async (callback) => {
     try {
@@ -26,7 +26,7 @@ module.exports.postCourse = async (course, callback) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('insert into course set ?', course, callback);
+            await con.query('insert into curso set ?', course, callback);
             con.end();
         });
     } catch (e) {

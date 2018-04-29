@@ -25,7 +25,7 @@ module.exports.getMonitoringByCurso = async (callback, course) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('SELECT d.nome as nome_disciplina,mo.nome as nome_monitoria,c.nome as come_curso,m.horario,m.localizacao FROM monitoria AS m INNER JOIN curso_has_disciplina AS chas ON (m.disciplina_id_disciplina = chas.disciplina_id_disciplina) INNER JOIN disciplina AS d ON (m.disciplina_id_disciplina = d.id_disciplina) INNER JOIN monitor AS mo ON (m.monitor_id_monitor = mo.id_monitor) INNER JOIN curso AS c ON (chas.curso_id_curso=?)', course, callback);
+            await con.query('SELECT d.nome as nome_disciplina,mo.nome as nome_monitor,c.nome as nome_curso,m.horario,m.localizacao FROM monitoria AS m INNER JOIN curso_has_disciplina AS chas ON (m.disciplina_id_disciplina = chas.disciplina_id_disciplina) INNER JOIN disciplina AS d ON (m.disciplina_id_disciplina = d.id_disciplina) INNER JOIN monitor AS mo ON (m.monitor_id_monitor = mo.id_monitor) INNER JOIN curso AS c ON (chas.curso_id_curso=?)', course, callback);
             con.end();
         });
     } catch (e) {
@@ -42,7 +42,7 @@ module.exports.getByCursoAndMonitoring = async (callback, course, monitoring) =>
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('SELECT d.nome as nome_disciplina,mo.nome as nome_monitoria,c.nome as come_curso,m.horario,m.localizacao FROM monitoria AS m INNER JOIN curso_has_disciplina AS chas ON (m.disciplina_id_disciplina = chas.disciplina_id_disciplina) INNER JOIN disciplina AS d ON (m.disciplina_id_disciplina = d.id_disciplina) INNER JOIN monitor AS mo ON (m.monitor_id_monitor = mo.id_monitor) INNER JOIN curso AS c ON (chas.curso_id_curso=?)  and d.nome like ?', [course, nameMonitoring], callback);
+            await con.query('SELECT d.nome as nome_disciplina,mo.nome as nome_monitor,c.nome as nome_curso,m.horario,m.localizacao FROM monitoria AS m INNER JOIN curso_has_disciplina AS chas ON (m.disciplina_id_disciplina = chas.disciplina_id_disciplina) INNER JOIN disciplina AS d ON (m.disciplina_id_disciplina = d.id_disciplina) INNER JOIN monitor AS mo ON (m.monitor_id_monitor = mo.id_monitor) INNER JOIN curso AS c ON (chas.curso_id_curso=?)  and d.nome like ?', [course, nameMonitoring], callback);
             con.end();
         });
     } catch (e) {

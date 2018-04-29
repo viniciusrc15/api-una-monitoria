@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const course = require('./courseDAO');
-const jwt = require('jsonwebtoken');
 const midware = require('../../utils/midwares');
-router.use('/register/course', midware.verifyToken);
+//router.use('/register/course', midware.verifyToken);
 
 router.get('/course', async (req, res) => {
     try {
@@ -18,6 +17,7 @@ router.get('/course', async (req, res) => {
 
 router.post('/register/course', async (req, res) => {
     try {
+        console.log(req.body);
         course.postCourse(req.body, function (error, result, fields) {
             if (error) return error.message;
             res.status(200).send('Curso cadastrado com sucesso');
@@ -26,3 +26,5 @@ router.post('/register/course', async (req, res) => {
         res.status(400).json(e.message);
     }
 });
+
+module.exports = router;
