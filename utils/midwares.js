@@ -18,7 +18,7 @@ let verifyToken = function (req, res, next) {
 
     let token = req.query.token || req.body.token || req.headers.token
 
-    jwt.verify(token, config.segredo, function (err, decoded) {
+    jwt.verify(token, 'secret', function (err, decoded) {
         if (err) {
             throw new Error(err);
         }

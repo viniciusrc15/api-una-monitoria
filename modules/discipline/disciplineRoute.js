@@ -3,10 +3,10 @@ const router = express.Router();
 const disciplineDAO = require('./disciplineDAO');
 
 //Passar id curso TODO
-router.post('/register/discipline', async (req, res) => {
+router.post('/register/discipline/:idCurso', async (req, res) => {
     let idCurso = req.params.idCurso;
     try {
-        disciplineDAO.postDiscipline(req.body, function (error, results, field){
+        disciplineDAO.postDiscipline(req.body, idCurso, function (error, results, field){
             if(error) return error.message;
             res.status(200).send('Disciplina Cadastrada com sucesso!');
             

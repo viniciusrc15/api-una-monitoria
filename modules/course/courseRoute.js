@@ -15,7 +15,7 @@ router.get('/course', async (req, res) => {
     }
 });
 
-router.post('/register/course', async (req, res) => {
+router.post('/register/course', midware.verifyToken, async (req, res) => {
     try {
         console.log(req.body);
         course.postCourse(req.body, function (error, result, fields) {
