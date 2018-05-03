@@ -1,6 +1,21 @@
 const express = require('express')
 const router = express.Router();
 const monitoringDAO = require('./monitoringDAO');
+const midware = require('../../utils/midwares');
+
+router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
+  try {
+    monitoringDAO.postMonitoring(function (error, result, fields) {
+      if (error) {
+        return error.message;
+      } else {
+        res.status(200).send('Monitoris casdastrada com sucesso!');
+      }
+    });
+  } catch (e) {
+    res.status(500).status.json(e.message);
+  }
+});
 
 router.get('/monitoring', async (req, res) => {
   try {

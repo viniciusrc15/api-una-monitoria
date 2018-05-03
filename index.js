@@ -13,10 +13,12 @@ const monitoringRoute = require('./modules/monitoring/monitoringRoute');
 const adminRoute = require('./modules/admin/adminRoute');
 const courseRoute = require('./modules/course/courseRoute');
 const disciplineRoute = require('./modules/discipline/disciplineRoute');
+const monitorsRoute =  require('./modules/monitors/monitorsRoute');
 
 app.use(bodyParser.json());
 
 app.use('/api', monitoringRoute);
+app.use('/api', monitorsRoute);
 app.use('/api', adminRoute);
 app.use('/api', courseRoute);
 app.use('/api', disciplineRoute);
