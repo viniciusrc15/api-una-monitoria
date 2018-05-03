@@ -11,4 +11,4 @@ Monitoria UNA consiste em um WebApp que auxilie os alunos do Centro Universitár
 * Fazer o download do projeto.
 * Abrir o terminal ou prompt e na pasta do projeto usar "npm install" para baixar os módulos do projeto.
 * Ainda no terminal ou prompt rodar "npm start".
-* As requisições são ser feitas no localhost:4200
+* As requisições são ser feitas no localhost:3000
