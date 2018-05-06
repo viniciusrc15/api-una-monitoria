@@ -14,7 +14,6 @@ module.exports.postDiscipline = async (discipline, idCurso, callback) => {
                 if (err) throw err;
                 console.log("result " + result.insertId);
                 id_disciplina = result.insertId;
-                console.log("teste " + id_disciplina);
                 con.query('insert into curso_has_disciplina(curso_id_curso, disciplina_id_disciplina) values(?, ?)', [idCurso, id_disciplina], callback);
                 con.end(); 
             });

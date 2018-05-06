@@ -4,8 +4,11 @@ const monitorsDAO = require('./monitorsDAO');
 const midware = require('../../utils/midwares');
 
 router.post('/monitors/register', midware.verifyToken, function (req, res) {
+
+    let monitor = req.body;
+    //console.log(monitor);
     try {
-        monitorsDAO.postMonitors(function (error, result, fields) {
+        monitorsDAO.postMonitors(monitor, function (error, result, fields) {
             if (error) {
                 return error.message;
             }
@@ -13,6 +16,17 @@ router.post('/monitors/register', midware.verifyToken, function (req, res) {
         });
     } catch (error) {
         res.status(500).json(error);
+    }
+});
+
+router.get('/monitors', async (req, res) => {
+    try {
+        monitorsDAO.getMonitors(function (error, result, fields) {
+            if (error) return error.message;
+            res.status(200).json(result);
+        });
+    } catch (e) {
+        res.status(400).json(e.message);
     }
 });
 

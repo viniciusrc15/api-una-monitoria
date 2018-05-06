@@ -4,12 +4,13 @@ const monitoringDAO = require('./monitoringDAO');
 const midware = require('../../utils/midwares');
 
 router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
+  let monitoring = req.body;
   try {
-    monitoringDAO.postMonitoring(function (error, result, fields) {
+    monitoringDAO.postMonitoring(monitoring, function (error, result, fields) {
       if (error) {
         return error.message;
       } else {
-        res.status(200).send('Monitoris casdastrada com sucesso!');
+        res.status(200).send('Monitoria casdastrada com sucesso!');
       }
     });
   } catch (e) {
@@ -17,16 +18,7 @@ router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
   }
 });
 
-router.get('/monitoring', async (req, res) => {
-  try {
-    monitoringDAO.getMonitoring(function (error, result, fields) {
-      if (error) return error.message;
-      res.status(200).json(result);
-    });
-  } catch (e) {
-    res.status(400).json(e.message);
-  }
-});
+
 
 router.get('/monitoring/:course', async (req, res) => {
   try {

@@ -1,34 +1,17 @@
 const mySql = require('../../utils/dbHelp');
 
-module.exports.postMonitoring = async (callback) => {
+module.exports.postMonitoring = async (monitoring, callback) => {
     try {
         con.connect(async (err) => {
             if (err) {
                 console.log("error connecting" + err);
                 return err.message;
             }
-            await con.query('insert into monitoria', monitoria, callback);
+            await con.query('insert into monitoria set ?', monitoring, callback);
             con.end;
         });
     } catch (e) {
         return e.message; 
-    }
-}
-
-module.exports.getMonitoring = async (callback) => {
-    try {
-        let con = mySql.Connection();
-
-        con.connect(async (err) => {
-            if (err) {
-                console.error('error connecting: ' + err.message);
-                return err.message;
-            }
-            await con.query('select * from monitor', callback);
-            con.end();
-        });
-    } catch (e) {
-        return e.message;
     }
 }
 
