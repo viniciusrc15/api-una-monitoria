@@ -20,7 +20,11 @@ router.post('/register/course', midware.verifyToken, async (req, res) => {
         console.log(req.body);
         course.postCourse(req.body, function (error, result, fields) {
             if (error) return error.message;
-            res.status(200).send('Curso cadastrado com sucesso');
+            res.status(200).send({
+                'msg':'Curso cadastrado com sucesso',
+                'result': result,
+                'fields': fields
+            });
         });
     } catch (e) {
         res.status(400).json(e.message);
