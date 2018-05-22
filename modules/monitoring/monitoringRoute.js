@@ -18,7 +18,16 @@ router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
   }
 });
 
-
+router.get('/monitoring/', async (req, res) => {
+    try{
+    monitoringDAO.getMonitoring(function(error, result, fields){
+      if(error) return error.message;
+      res.status(200).json(result);
+    });
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
+});
 
 router.get('/monitoring/:course', async (req, res) => {
   try {
