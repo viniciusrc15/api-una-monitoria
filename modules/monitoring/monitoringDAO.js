@@ -15,6 +15,22 @@ module.exports.postMonitoring = async (monitoring, callback) => {
     }
 }
 
+module.exports.getMonitoring = async (callback) => {
+    try{
+        let con = mySql.Connection();
+        con.connect(async (err) => {
+            if(err) {
+                console.error('erro connecting', + err.message);
+                return err.message;
+            }
+            await con.query('SELECT id_disciplina, nome FROM disciplina', callback);
+            con.end;
+        });
+    }catch (e){
+        return e.message;
+    }
+}
+
 module.exports.getMonitoringByCurso = async (callback, course) => {
     try {
         let con = mySql.Connection();
