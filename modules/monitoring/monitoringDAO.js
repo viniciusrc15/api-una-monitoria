@@ -2,13 +2,14 @@ const mySql = require('../../utils/dbHelp');
 
 module.exports.postMonitoring = async (monitoring, callback) => {
     try {
+        let con = mySql.Connection();
         con.connect(async (err) => {
             if (err) {
                 console.log("error connecting" + err);
                 return err.message;
             }
             await con.query('insert into monitoria set ?', monitoring, callback);
-            con.end;
+            con.end();
         });
     } catch (e) {
         return e.message; 
