@@ -30,4 +30,15 @@ router.get('/monitors', async (req, res) => {
     }
 });
 
+router.get('/monitors/whithout', async (req, res) => {
+    try {
+        monitorsDAO.getMonitorsWhithout(function (error, result, fields) {
+            if (error) return error.message;
+            res.status(200).json(result);
+        });
+    } catch (e) {
+        res.status(400).json(e.message);
+    }
+});
+
 module.exports = router;
