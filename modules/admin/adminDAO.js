@@ -22,7 +22,6 @@ module.exports.postAdminRegister = async (admin, callback) => {
 }
 
 module.exports.postAdminLogin = async (admin,callback) => {
-    console.log(admin)
     admin.senha = hash.createHash(admin.senha);
     try {
         let con = mySql.Connection();

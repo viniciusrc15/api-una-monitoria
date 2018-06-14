@@ -6,18 +6,18 @@ const midware = require('../../utils/midwares');
 router.use('/admin/login', midware.verifyToken);
 
 router.post('/login', async (req, res) => {
-  try {
-    adminDAO.postAdminLogin(req.body, function (error, result, fields) {
-      if (result.length > 0) {
-        let token = jwt.sign({
-          data: req.body.usuario
-        }, 'secret', { expiresIn: '1h' });
-        res.setHeader('Access-Token', token);
-        res.status(200).send('Logado com sucesso');
-      } else {
-        res.status(403).send('Usuário ou senha incorreto');
-      }
-    });
+    try {
+      adminDAO.postAdminLogin(req.body, function (error, result, fields) {
+        if (result.length > 0) {
+          let token = jwt.sign({
+            data: req.body.usuario
+          }, 'secret', { expiresIn: '1h' });
+          res.setHeader('Access-Token', token);
+          res.status(200).send('Logado com sucesso');
+        } else {
+          res.status(404).send('Usuário ou senha incorreto');
+        }
+      });
   } catch (e) {
     res.status(500).json(e.message);
   }

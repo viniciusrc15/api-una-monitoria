@@ -26,7 +26,7 @@ module.exports.getMonitors = async (callback) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            await con.query('select * from monitor', callback);
+            await con.query('SELECT * FROM monitor left join monitoria as mon on monitor.id_monitor = mon.monitor_id_monitor where mon.monitor_id_monitor IS NULL', callback);
             con.end();
         });
     } catch (e) {
