@@ -5,12 +5,14 @@ const midware = require('../../utils/midwares');
 
 router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
   let monitoring = req.body;
+  console.log(monitoring);
   try {
     monitoringDAO.postMonitoring(monitoring, function (error, result, fields) {
+      console.log('entrou no callback');
       if (error) {
         return error.message;
       } else {
-        res.status(200).send('Monitoria casdastrada com sucesso!');
+        res.status(200).send('Monitoria cadastrada com sucesso!');
       }
     });
   } catch (e) {
