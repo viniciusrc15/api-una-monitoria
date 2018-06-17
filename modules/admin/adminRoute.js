@@ -8,6 +8,9 @@ router.use('/admin/login', midware.verifyToken);
 router.post('/login', async (req, res) => {
     try {
       adminDAO.postAdminLogin(req.body, function (error, result, fields) {
+        if(error){
+          return res.status(500).send(error);
+        }
         if (result.length > 0) {
           let token = jwt.sign({
             data: req.body.usuario
@@ -26,6 +29,9 @@ router.post('/login', async (req, res) => {
 router.post('/admin/register', async (req, res) => {
   try {
     adminDAO.postAdminRegister(req.body, function (error, result, fields) {
+      if(error){
+        return res.status(500).send(error);
+      }
       res.status(201).send('Cadastro feito com sucesso!');
     });
   } catch (e) {

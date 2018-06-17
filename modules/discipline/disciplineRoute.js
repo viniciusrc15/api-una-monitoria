@@ -8,7 +8,9 @@ router.post('/register/discipline/:idCurso', midware.verifyToken, async (req, re
     let idCurso = req.params.idCurso;
     try {
         disciplineDAO.postDiscipline(req.body, idCurso, function (error, results, field){
-            if(error) return error.message;
+            if(error){
+                return res.status(500).send(error);
+            }
             res.status(200).send('Disciplina Cadastrada com sucesso!');
             
         });

@@ -58,7 +58,9 @@ router.get('/monitoring/:course/:monitoring', async (req, res) => {
     let course = req.params.course;
     let monitoring = req.params.monitoring;
     monitoringDAO.getByCursoAndMonitoring(function (error, result, fields) {
-      if (error) return error.message;
+      if(error){
+        return res.status(500).send(error);
+      }
       res.status(200).json(result);
     }, course, monitoring);
   } catch (e) {
@@ -66,14 +68,14 @@ router.get('/monitoring/:course/:monitoring', async (req, res) => {
   }
 });
 
-router.delete('/monitoring/delete/:id', async (req, res) => {
+router.delete('/monitoring/delete/:id', midware.verifyToken, async (req, res) => {
   let idMonitoring = req.params.id;
   try {
     monitoringDAO.deleteMonitoring(idMonitoring, function (error, result, fields){
-          if(error){
-              return res.status(500).send(error);
-          }
-          res.status(200).send('Monitoria deletada com sucesso');
+        if(error){
+          return res.status(500).send(error);
+        }
+        res.status(200).send('Monitoria deletada com sucesso');
       });
   } catch (error) {
       res.status(400).json(e.message);

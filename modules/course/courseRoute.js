@@ -7,7 +7,9 @@ const midware = require('../../utils/midwares');
 router.get('/course', async (req, res) => {
     try {
         course.getCourse(function (error, result, fields) {
-            if (error) return error.message;
+            if(error){
+                return res.status(500).send(error);
+            }
             res.status(200).json(result);
         });
     } catch (e) {
@@ -19,7 +21,9 @@ router.post('/register/course', midware.verifyToken, async (req, res) => {
     try {
         console.log(req.body);
         course.postCourse(req.body, function (error, result, fields) {
-            if (error) return error.message;
+            if(error){
+                return res.status(500).send(error);
+            }
             res.status(200).send({
                 'msg':'Curso cadastrado com sucesso',
                 'result': result,
