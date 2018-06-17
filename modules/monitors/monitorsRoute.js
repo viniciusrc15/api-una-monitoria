@@ -10,7 +10,7 @@ router.post('/monitors/register', midware.verifyToken, function (req, res) {
     try {
         monitorsDAO.postMonitors(monitor, function (error, result, fields) {
             if (error) {
-                return error.message;
+                return res.status(500).send(error);
             }
             res.status(200).send('Monitor cadastrador com sucesso');
         });
@@ -22,7 +22,9 @@ router.post('/monitors/register', midware.verifyToken, function (req, res) {
 router.get('/monitors', async (req, res) => {
     try {
         monitorsDAO.getMonitors(function (error, result, fields) {
-            if (error) return error.message;
+            if (error){
+                return res.status(500).send(error);
+            };
             res.status(200).json(result);
         });
     } catch (e) {
@@ -33,7 +35,9 @@ router.get('/monitors', async (req, res) => {
 router.get('/monitors/whithout', async (req, res) => {
     try {
         monitorsDAO.getMonitorsWhithout(function (error, result, fields) {
-            if (error) return error.message;
+            if (error){
+                return res.status(500).send(error);
+            };
             res.status(200).json(result);
         });
     } catch (e) {
