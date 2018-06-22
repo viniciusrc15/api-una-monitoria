@@ -18,6 +18,7 @@ module.exports.postMonitors = async (monitor, callback) => {
 }
 
 module.exports.getMonitorsWhithout = async (callback) => {
+    console.log("chegou");
     try {
         let con = mySql.Connection();
 
