@@ -38,6 +38,7 @@ router.get('/monitors/whithout', async (req, res) => {
             if (error){
                 return res.status(500).send(error);
             };
+            console.log(result);
             res.status(200).json(result);
         });
     } catch (e) {
