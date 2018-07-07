@@ -6,6 +6,8 @@ Monitoria UNA consiste em um WebApp que auxilie os alunos do Centro Universitár
 
 ### Para acesso ao banco é necessário configurar variáveis de ambiente para informações dos valores solicitar ao dono do repositório.
 
+### Existe um dump do banco MySql na raiz do projeto "dump-unamonitoria.sql", basta executá-lo para um projeto local e depois configurar o acesso para seu banco no arquivo utils/dbHelp.js
+
 ## Run
 * Instalar NodeJs/NPM no computador.
 * Fazer o download do projeto.
