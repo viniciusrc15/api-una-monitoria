@@ -16,6 +16,7 @@ router.post('/login', async (req, res) => {
             data: req.body.usuario
           }, 'secret', { expiresIn: '1h' });
           res.setHeader('Access-Token', token);
+          res.setHeader('Access-Control-Expose-Headers', 'Access-Token');
           res.status(200).send('Logado com sucesso');
         } else {
           res.status(404).send('Usuário ou senha incorreto');
