@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router();
 const adminDAO = require('./adminDAO');
 const jwt = require('jsonwebtoken');
-const midware = require('../../utils/midwares');
-router.use('/login', midware.verifyToken);
 
 router.post('/login', async (req, res) => {
     try {
