@@ -3,7 +3,7 @@ const router = express.Router();
 const adminDAO = require('./adminDAO');
 const jwt = require('jsonwebtoken');
 const midware = require('../../utils/midwares');
-router.use('/admin/login', midware.verifyToken);
+router.use('/login', midware.verifyToken);
 
 router.post('/login', async (req, res) => {
     try {
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/admin/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     adminDAO.postAdminRegister(req.body, function (error, result, fields) {
       if(error){

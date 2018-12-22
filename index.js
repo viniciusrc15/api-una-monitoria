@@ -17,11 +17,11 @@ const monitorsRoute =  require('./modules/monitors/monitorsRoute');
 
 app.use(bodyParser.json());
 
-app.use('/api', monitoringRoute);
-app.use('/api', monitorsRoute);
-app.use('/api', adminRoute);
-app.use('/api', courseRoute);
-app.use('/api', disciplineRoute);
+app.use('/api/monitoring', monitoringRoute);
+app.use('/api/monitors', monitorsRoute);
+app.use('/api/admin', adminRoute);
+app.use('/api/course', courseRoute);
+app.use('/api/discipline', disciplineRoute);
 
 app.get('/', function (req, res) {
   res.status(200).send('Una Monitoria!');
@@ -29,5 +29,5 @@ app.get('/', function (req, res) {
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
-  console.log('Servidor OK!! http://localhost:3000/ ');
+  console.log('Servidor OK!! http://localhost:',port);
 });

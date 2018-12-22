@@ -19,7 +19,7 @@ router.post('/monitors/register', midware.verifyToken, function (req, res) {
     }
 });
 
-router.get('/monitors', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         monitorsDAO.getMonitors(function (error, result, fields) {
             if (error){
@@ -32,7 +32,7 @@ router.get('/monitors', async (req, res) => {
     }
 });
 
-router.get('/monitors/whithout', async (req, res) => {
+router.get('/whithout', async (req, res) => {
     try {
         monitorsDAO.getMonitorsWhithout(function (error, result, fields) {
             if (error){

@@ -4,7 +4,7 @@ const course = require('./courseDAO');
 const midware = require('../../utils/midwares');
 //router.use('/register/course', midware.verifyToken);
 
-router.get('/course', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         course.getCourse(function (error, result, fields) {
             if(error){
@@ -17,9 +17,8 @@ router.get('/course', async (req, res) => {
     }
 });
 
-router.post('/register/course', midware.verifyToken, async (req, res) => {
+router.post('/register', midware.verifyToken, async (req, res) => {
     try {
-        console.log(req.body);
         course.postCourse(req.body, function (error, result, fields) {
             if(error){
                 return res.status(500).send(error);

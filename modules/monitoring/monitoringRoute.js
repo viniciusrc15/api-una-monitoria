@@ -3,11 +3,9 @@ const router = express.Router();
 const monitoringDAO = require('./monitoringDAO');
 const midware = require('../../utils/midwares');
 
-router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
+router.post('/register', midware.verifyToken, async (req, res) => {
   let monitoring = req.body;
-  console.log(monitoring);
   monitoring.ativo = "1";
-  console.log(monitoring);
   try {
     monitoringDAO.postMonitoring(monitoring, function (error, result, fields) {
       console.log('entrou no callback');
@@ -24,7 +22,7 @@ router.post('/monitoring/register', midware.verifyToken, async (req, res) => {
   }
 });
 
-router.get('/monitoring/', async (req, res) => {
+router.get('/', async (req, res) => {
     try{
     monitoringDAO.getMonitoring(function(error, result, fields){
       if(error){
@@ -38,7 +36,7 @@ router.get('/monitoring/', async (req, res) => {
   }
 });
 
-router.get('/monitoring/:course', async (req, res) => {
+router.get('/:course', async (req, res) => {
   try {
     let course = req.params.course;
     monitoringDAO.getMonitoringByCurso(function (error, result, fields) {
@@ -53,7 +51,7 @@ router.get('/monitoring/:course', async (req, res) => {
   }
 });
 
-router.get('/monitoring/:course/:monitoring', async (req, res) => {
+router.get('/:course/:monitoring', async (req, res) => {
   try {
     let course = req.params.course;
     let monitoring = req.params.monitoring;
@@ -68,7 +66,7 @@ router.get('/monitoring/:course/:monitoring', async (req, res) => {
   }
 });
 
-router.delete('/monitoring/delete/:id', midware.verifyToken, async (req, res) => {
+router.delete('/delete/:id', midware.verifyToken, async (req, res) => {
   let idMonitoring = req.params.id;
   try {
     monitoringDAO.deleteMonitoring(idMonitoring, function (error, result, fields){

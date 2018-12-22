@@ -30,7 +30,7 @@ module.exports.postAdminLogin = async (admin,callback) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            var resp = await con.query('select * from administrador where usuario = ? and senha = ?', [admin.usuario, admin.senha], callback);
+            await con.query('select * from administrador where usuario = ? and senha = ?', [admin.usuario, admin.senha], callback);
             con.end();
         });
     } catch (e) {
