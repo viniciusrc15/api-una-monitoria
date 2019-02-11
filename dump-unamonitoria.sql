@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `unamonitoria` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `unamonitoria`;
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: unamonitoria
 -- ------------------------------------------------------
--- Server version	5.7.22-0ubuntu0.16.04.1
+-- Server version	5.7.25-0ubuntu0.16.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,10 +21,6 @@
 -- Table structure for table `administrador`
 --
 
-CREATE DATABASE unamonitoria;
-
-USE unamonitoria;
-
 DROP TABLE IF EXISTS `administrador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -33,7 +31,7 @@ CREATE TABLE `administrador` (
   `email` varchar(30) NOT NULL,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id_administrador`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +40,7 @@ CREATE TABLE `administrador` (
 
 LOCK TABLES `administrador` WRITE;
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
-INSERT INTO `administrador` VALUES (1,'admin','8xKX/PQcG2LZMTR/OL0Zl5II9WPhElGNilBOepxeuSY=','unamonitoria@gmail.com','Administrador');
+INSERT INTO `administrador` VALUES (1,'admin','8xKX/PQcG2LZMTR/OL0Zl5II9WPhElGNilBOepxeuSY=','unamonitoria@gmail.com','Administrador'),(2,'admin','8xKX/PQcG2LZMTR/OL0Zl5II9WPhElGNilBOepxeuSY=','unamonitoria@gmail.com','Administrador');
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +107,7 @@ CREATE TABLE `disciplina` (
   `id_disciplina` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id_disciplina`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,6 +160,7 @@ CREATE TABLE `monitoria` (
   `monitor_id_monitor` int(10) unsigned NOT NULL,
   `horario` datetime NOT NULL,
   `localizacao` varchar(100) NOT NULL,
+  `ativo` varchar(1) DEFAULT '1',
   PRIMARY KEY (`id_monitoria`),
   KEY `monitoria_FKIndex1` (`monitor_id_monitor`),
   KEY `monitoria_FKIndex2` (`disciplina_id_disciplina`),
@@ -176,7 +175,7 @@ CREATE TABLE `monitoria` (
 
 LOCK TABLES `monitoria` WRITE;
 /*!40000 ALTER TABLE `monitoria` DISABLE KEYS */;
-INSERT INTO `monitoria` VALUES (34,13,23,'2018-01-01 19:30:00','sala 1404');
+INSERT INTO `monitoria` VALUES (34,13,23,'2018-01-01 19:30:00','sala 1404','1');
 /*!40000 ALTER TABLE `monitoria` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -189,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-07 14:29:25
+-- Dump completed on 2019-01-28 19:48:45
