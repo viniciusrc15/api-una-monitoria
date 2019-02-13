@@ -1,9 +1,7 @@
 var mysql = require('mysql');
 
-
 module.exports.Connection = () => {
-
-	var conMySql = mysql.createConnection({
+	const conMySql = mysql.createConnection({
 		// host: process.env.serverMonitor,
 		// user: process.env.userMonitor,
 		// password: process.env.passMonitor,
@@ -14,6 +12,5 @@ module.exports.Connection = () => {
 		password: '1234',
 		database: 'unamonitoria'
 	});
-	
 	return conMySql;
 }

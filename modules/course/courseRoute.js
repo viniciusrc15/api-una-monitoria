@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const course = require('./courseDAO');
-const midware = require('../../utils/midwares');
-//router.use('/register/course', midware.verifyToken);
+const { verifyToken } = require('../../utils/midwares');
 
 router.get('/', async (req, res) => {
     try {
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/register', midware.verifyToken, async (req, res) => {
+router.post('/register', verifyToken, async (req, res) => {
     try {
         course.postCourse(req.body, function (error, result, fields) {
             if(error){

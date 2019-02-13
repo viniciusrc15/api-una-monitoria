@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const monitorsDAO = require('./monitorsDAO');
-const midware = require('../../utils/midwares');
+const { verifyToken } = require('../../utils/midwares');
 
-router.post('/monitors/register', midware.verifyToken, function (req, res) {
-
+router.post('/monitors/register', verifyToken, function (req, res) {
     let monitor = req.body;
-    //console.log(monitor);
     try {
         monitorsDAO.postMonitors(monitor, function (error, result, fields) {
             if (error) {
@@ -22,7 +20,7 @@ router.post('/monitors/register', midware.verifyToken, function (req, res) {
 router.get('/', async (req, res) => {
     try {
         monitorsDAO.getMonitors(function (error, result, fields) {
-            if (error){
+            if (error) {
                 return res.status(500).send(error);
             };
             res.status(200).json(result);
@@ -35,7 +33,7 @@ router.get('/', async (req, res) => {
 router.get('/whithout', async (req, res) => {
     try {
         monitorsDAO.getMonitorsWhithout(function (error, result, fields) {
-            if (error){
+            if (error) {
                 return res.status(500).send(error);
             };
             res.status(200).json(result);

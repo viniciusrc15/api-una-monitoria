@@ -5,29 +5,28 @@ module.exports.postMonitoring = async (monitoring, callback) => {
         let con = mySql.Connection();
         con.connect(async (err) => {
             if (err) {
-                console.log("error connecting" + err);
                 return err.message;
             }
             await con.query('insert into monitoria set ?', monitoring, callback);
             con.end();
         });
     } catch (e) {
-        return e.message; 
+        return e.message;
     }
 }
 
 module.exports.getMonitoring = async (callback) => {
-    try{
+    try {
         let con = mySql.Connection();
         con.connect(async (err) => {
-            if(err) {
+            if (err) {
                 console.error('erro connecting', + err.message);
                 return err.message;
             }
             await con.query('SELECT id_disciplina, nome FROM disciplina', callback);
             con.end;
         });
-    }catch (e){
+    } catch (e) {
         return e.message;
     }
 }

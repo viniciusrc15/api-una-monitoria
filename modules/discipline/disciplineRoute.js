@@ -1,10 +1,9 @@
 const express  = require('express');
 const router = express.Router();
 const disciplineDAO = require('./disciplineDAO');
-const midware = require('../../utils/midwares')
+const { verifyToken } = require('../../utils/midwares');
 
-//Passar id curso TODO
-router.post('/register/:idCurso', midware.verifyToken, async (req, res) => {
+router.post('/register/:idCurso', verifyToken, async (req, res) => {
     let idCurso = req.params.idCurso;
     try {
         disciplineDAO.postDiscipline(req.body, idCurso, function (error, results, field){

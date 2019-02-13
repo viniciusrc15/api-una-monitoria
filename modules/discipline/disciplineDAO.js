@@ -8,14 +8,12 @@ module.exports.postDiscipline = async (discipline, idCurso, callback) => {
                 console.error('error connecting: ' + err.message);
                 return err.message;
             }
-            console.log(discipline)
             let id_disciplina;
             await con.query('insert into disciplina set ?', discipline, function (err, result) {
                 if (err) throw err;
-                console.log("result " + result.insertId);
                 id_disciplina = result.insertId;
                 con.query('insert into curso_has_disciplina(curso_id_curso, disciplina_id_disciplina) values(?, ?)', [idCurso, id_disciplina], callback);
-                con.end(); 
+                con.end();
             });
         });
     } catch (error) {

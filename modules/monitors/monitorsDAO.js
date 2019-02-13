@@ -3,12 +3,10 @@ const mySql = require('../../utils/dbHelp');
 module.exports.postMonitors = async (monitor, callback) => {
     try {
         let con = mySql.Connection();
-        con.connect (async (err) => {
-            if (err){
-                console.log(err);
+        con.connect(async (err) => {
+            if (err) {
                 return err.message;
             }
-            console.log(monitor);
             await con.query('insert into monitor set ?', monitor, callback);
             con.end();
         });
