@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const { verifyAuth } = require('./auth');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -10,16 +11,14 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-router.post('/', (req, res) => {
+router.post('/', verifyAuth, (req, res, next) => {
     const { subject, text, from } = req.body;
-    console.log('email');
     const mailOption = {
         from: 'rafaejfhsdjkfhl@gmail.com',
         to: 'vinicius1595@gmail.com',
         subject: `${from} - ${subject}`,
         text
     }
-
     transporter.sendMail(mailOption, (error) => {
         if (error) {
             res.status(500).json({
